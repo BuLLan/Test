@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" 	href="/resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" 	href="/resources/css/newStyle.css" />
+	<link rel="stylesheet" type="text/css" 	href="/resources/css/font-awesome.min.css" />
+	<meta name="author" content="Team Salespoint" /> 
+	<meta name="description" content="super special awesome stuff" /> 
+	<meta name="generator" content="Microsoft FrontPage 6.0" /> 
+	<title>Catering Service</title>
+
+</head>
+<body>
+<header>
+		<nav th:include="navigation :: navigation"></nav>
+	</header>  
+    <div class="wrapper">
+		<h1>Lager</h1>
+        <br/>
+        <br/>
+        
+        
+        <p style="color: red; font-size: 15pt;" id="error" th:text="${error}">x</p>
+        <form method="get" action="/insertNew" th:object="${produktInsertForm}">
+						<select class="" name="id">
+                			<option th:each="article : ${articles}" th:value="${article.identifier}"
+                        		th:text="${article.name}+'('+${article.category}+')'">
+                			</option>
+            			</select>
+						<label for="amount">Anzahl</label>
+						<input type="number" name="amount" min="-10000" maxlength="10000" />
+						<input type="submit" id="name" th:field="*{name}" value="hinzufügen" />
+		</form>
+        
+        
+        <br/>
+        <h3>Speisen</h3>
+        <div class="datagrid">
+ 
+        <table id="angebot" >
+        	
+        	<thead>
+        		<tr>
+        			<th >Bezeichnung</th>
+        			<th width="150" >Auf Lager</th>
+        			<th width="150">Preis</th>
+        			<th width="80">Aktion</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<tr th:each="article : ${catalogSpeisen}">
+        			<td th:text="${article.product.name}">aaa</td>
+        			<td th:text="${article.quantity}">9000</td>
+        			<td th:text="${article.product.price}"></td>
+        			<td>
+        				<form th:method="delete" th:action="@{'/delete/' + ${article.identifier}}" th:attr="data-entry-id=${article.identifier}">
+        				<i class="icon-remove"></i><input type="submit" value=" löschen" class="bbutton" />
+        				</form>
+        			</td>
+        		</tr>
+        	</tbody>
+        </table >
+        </div>
+        <br/>
+        <h3>Getränke</h3>
+        <div class="datagrid">
+        <table id="angebot">
+        	<thead>
+        		<tr>
+        			<th >Bezeichnung</th>
+        			<th width="150" >Auf Lager</th>
+        			<th width="150">Preis</th>
+        			<th width="80">Aktion</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<tr th:each="article : ${catalogGetraenke}">
+        			<td th:text="${article.product.name}">aaa</td>
+        			<td th:text="${article.quantity}">9000</td>
+        			<td th:text="${article.product.price}"></td>
+        			<td>
+        				<form th:method="delete" th:action="@{'/delete/' + ${article.identifier}}" th:attr="data-entry-id=${article.identifier}">
+        					<i class="icon-remove"></i><input type="submit" value=" löschen" class="bbutton" />
+        				</form>
+        			</td>
+        		</tr>
+        	</tbody>
+        </table>
+        </div>
+        <br/>
+       	<h3>Leihwaren</h3>
+        <div class="datagrid">
+        <table id="angebot">
+
+        	<thead>
+        		<tr>
+        			<th>Bezeichnung</th>
+        			<th width="150" >Auf Lager</th>
+        			<th width="150">Preis</th>
+        			<th width="80">Aktion</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<tr th:each="article : ${catalogLeihwaren}">
+        			<td th:text="${article.product.name}">aaa</td>
+        			<td th:text="${article.quantity}">9000</td>
+        			<td th:text="${article.product.price}"></td>
+        			<td>
+        				<form th:method="delete" th:action="@{'/delete/' + ${article.identifier}}" th:attr="data-entry-id=${article.identifier}">
+        				<i class="icon-remove"></i><input type="submit" value=" löschen" class="bbutton" />
+        				</form>
+        			</td>
+        		</tr>
+        	</tbody>
+        </table>
+        </div>
+        
+        
+       
+		<br/>  
+		<br/>
+		<br/>
+		<footer>
+			<hr/>
+			<div class="footer-left">
+				Copyright &copy; 2014 Dennis K&ouml;rte<br/>
+				SWT-Praktikum <strong>Catering-Service</strong> Eine Java-Webanwendung
+			</div>
+			<div class="footer-right">
+				L&ouml;sung von:<br/>
+				Kevin, Dennis, Igor, Sangrim und Anne-Liesse
+			</div>
+            <br/>
+            <br/>
+		</footer>
+	</div>    
+</body>
+</html>

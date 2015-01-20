@@ -1,0 +1,54 @@
+div.wrapper table td{
+	vertical-align: top;
+	float: left;
+}
+
+#tDaten{
+	margin-top: 40px;
+}
+
+footer {
+	margin-bottom: 30px;
+}
+
+.addBlock{
+	margin: 0px 0px 20px 0px;
+	padding: 0px;
+	border: 1px solid #ccc;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	width: 100%;
+	/* display: block;
+	position: relative; */
+	float:left;
+	background:#ccc;
+}
+
+#addMan{
+	margin: 10px;
+	line-height: 200%;
+	color: #000;
+	
+}
+
+#addMan input{
+	margin-right: 20px;
+}
+.colLast{
+	width: 1%; /* Ширина первой колонки */
+	padding-right: 10px;
+}
+.colLast a {
+	line-height: 20px;
+	color: #000;
+	text-decoration: none;
+}
+
+.addUnit{
+	margin: 0px;
+	width: 100%;
+}
+.addUnit td{
+	border: none;
+}

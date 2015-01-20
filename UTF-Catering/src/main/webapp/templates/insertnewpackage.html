@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" 	href="/resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" 	href="/resources/css/newStyle.css" />
+	<link rel="stylesheet" type="text/css" 	href="/resources/css/font-awesome.min.css" />
+	<meta name="author" content="Team Salespoint" /> 
+	<meta name="description" content="super special awesome stuff" /> 
+	<meta name="generator" content="Microsoft FrontPage 6.0" /> 
+	<title>Catering Service</title>
+
+</head>
+<body>
+	<header>
+		<nav th:include="navigation :: navigation"></nav>
+	</header>  
+    <div class="wrapper">
+		<h1>Paket speichern</h1>
+		
+		<span>Füge dem Paket die gewünschten Artikel hinzu!</span><br/>
+		<div id="error" th:text="${error}"></div>
+		<form action="/addPackage" method="POST">
+			
+			<label for="id">Artikel:</label>
+			<select class="" name="id">
+            	<option th:each="article : ${articles}" th:value="${article.identifier}"
+                th:text="${article.name}+'('+${article.category}+')'">
+               	</option>
+            </select>
+            <label for="amount">Anzahl:</label>
+            <input type="number" min="1" max="50" value="1" step="1" name="amount"/>
+            <input type="submit" value="hinzufügen" />
+		</form>
+		<br/>
+
+        <div class="datagrid">
+
+		<table id="angebot" th:if="${package} != null">
+			<thead>
+            	<tr>
+            		<th style="width: 100px"></th>
+                    <th>Name</th>
+                    <th>Inhalt pro Person</th>
+                    <th style="width: 150px">Preis pro Person</th>
+                </tr>
+            </thead>
+            <tbody>
+            	<tr>
+            		<td><img th:src="@{'/resources/img/' + ${package.name} + '.jpg'}" class="thumbnail" style="margin-right: 0px; height: 100px; width: 100px;"/></td>
+            		<td th:text="${package.name}"></td>
+            		<td>
+            		    <div th:each="article : ${package.articles}">
+            		    	<form th:method="delete" th:action="@{'/removeArticle/' + ${article.id}}" 
+	                    			th:attr="data-entry-id=${article.id}">
+	                    	<span th:text="${article.countOfArticle}+'x '+${article.article.name}"></span>
+	                    	<input style="font-weight: bold;" type="submit" value="löschen" class="bbutton"/><i style="font-weight: bold;" class="icon-remove"></i>
+        					</form>
+	                    </div>
+            		</td>
+            		<td th:text="${package.price}"></td>
+                </tr>
+        	</tbody>
+        </table>
+        </div>
+		
+		<br/> 
+		<br/>
+		<span th:if="${package} != null">Passe ggf. Namen und Bild an!</span><br/>
+		<div id="error" th:text="${error2}"></div>
+		<form th:if="${package} != null" action="/savePackage" enctype="multipart/form-data" method="post">
+			<label for="name">Name:</label>
+			<input th:if="${package} == null" type="text" name="name" autofocus/>
+			<input th:if="${package} != null" type="text" name="name" th:value="${package.name}" autofocus/>
+			<label for="image">Bild(.jpg):</label>
+			<input name="image" type="file"/>
+            <input type="submit" value="Paket speichern" />
+		</form> 
+		<br/>
+		<br/>
+		<footer>
+			<hr/>
+			<div class="footer-left">
+				Copyright &copy; 2014 Dennis K&ouml;rte<br/>
+				SWT-Praktikum <strong>Catering-Service</strong> Eine Java-Webanwendung
+			</div>
+			<div class="footer-right">
+				L&ouml;sung von:<br/>
+				Kevin, Dennis, Igor, Sangrim und Anne-Liesse
+			</div>
+            <br/>
+            <br/>
+		</footer>
+    </div>    
+</body>
+</html>

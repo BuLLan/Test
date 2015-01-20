@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" 	href="/resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" 	href="/resources/css/font-awesome.min.css" />
+	<title>Catering Service</title>
+	</head>
+<body>
+	<nav th:fragment="navigation">
+<div class="wrapper">
+        <div id="logo"></div> 
+            <div id="nav-left">
+                    <ul class="nav">
+                    	<li><a href="/shop.html"><i class="icon-th-large navIcon"></i> Online-Shop</a>
+                        	<div id="shop" sec:authorize="hasRole('ROLE_ADMIN')">
+                                	<a th:href="@{/shop}">Pakete</a><br/><hr/>
+                                	<a th:href="@{/speisen}">Speisen</a><br/><hr/>
+                    				<a th:href="@{/getraenke}">Getr&auml;nke</a><br/><hr/>
+                    				<a th:href="@{/leihwaren}">Leihwaren</a>
+                    		</div>
+                    		<div id="shop" sec:authorize="!hasRole('ROLE_ADMIN')">
+                                	<a th:href="@{/shop}">Pakete</a><br/><hr/>
+                                	<a th:href="@{/all}">Einzelne Artikel</a><br/>
+                    		</div>
+                                	
+                        </li>
+                        <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/AdminManageUser.html"><i class="icon-group"></i> Mitarbeiter</a>
+                        	<div id="mitarbeiter">
+                                	<a th:href="@{/AdminEmployees}" href="AdminEmployeesList.html">Mitarbeiter&uuml;bersicht</a><br/><hr/>
+                    				<a th:href="@{/AdminRegister}" href="AdminManageUser.html">Mitarbeiter hinzuf&uuml;gen</a>
+                    		</div>
+                        </li >
+                        <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/AdminManageUser.html"><i class="icon-male"></i><i class="icon-female"></i> Kunde</a>
+                        	<div id="mitarbeiter">
+									<a th:href="@{/AdminExternals}" href="AdminExternalUserList.html">Kunden&uuml;bersicht</a><br/><hr/>
+                                    <a th:href="@{/AdminRegisterExternal}" href="AdminManageUser.html">Kunden hinzuf&uuml;gen</a>
+                    		</div>
+                        </li>
+                        
+                        <li sec:authorize="hasRole('ROLE_ADMIN')" th:class="${lagerS}"><a th:href="@{/lager}" href="/lager.html"><i class="icon-archive"></i> Lager</a></li>
+                        <li sec:authorize="hasRole('ROLE_ADMIN')" th:class="${bestellungenS}"><a th:href="@{/bestellungen}"><i class="icon-folder-open"></i> Bestellungen</a></li>
+                        <li sec:authorize="hasRole('ROLE_CLIENT')" th:class="${bestellungenClientS}"><a th:href="@{/bestellungenClient}"><i class="icon-folder-open"></i>Meine Bestellungen</a></li>
+                        
+                        <li th:class="${kalenderS}"><a th:href="@{/calendar}" href="/calendar.html"><i class="icon-calendar"></i><span> Kalender </span></a></li>
+                        <li sec:authorize="hasRole('ROLE_CLIENT')" ><a th:href="@{/warenKorb}"><i class="icon-shopping-cart"></i> Warenkorb</a></li>
+                    </ul>
+			</div>
+			<div id="nav-right">
+			<ul  class="nav">
+               	<li sec:authorize="isAuthenticated()"><a href="#"><i class="icon-user navIcon"></i> Benutzer</a>
+                    	<div id="details">
+                    		<label>Benutzername:</label><br/>
+                       		<b><span th:text="${#authentication?.name}">Dennis Körte</span></b><br/><br/>
+							<span sec:authorize="hasRole('ROLE_CLIENT')" th:class="${myAccountS}"><a th:href="@{/MyAccount}">Mein Account</a></span>                    	
+                    	</div>
+                </li>
+                <li sec:authorize="!isAuthenticated()">
+					<a th:href="@{/ExternalRegisterNew}"><i class="icon-plus navIcon"></i>&nbsp; Registrieren</a>
+				</li>                
+				<li sec:authorize="isAuthenticated()">
+					<a th:href="@{/logout}"><i class="icon-signout navIcon"></i> Logout</a>
+				</li>
+				<li sec:authorize="!isAuthenticated()">
+					<a th:href="@{/login}"><i class="icon-signin navIcon"></i> LogIn</a>
+				</li>
+			</ul>
+			</div>
+		</div>
+	</nav>
+</body>
+</html>

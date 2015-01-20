@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" 	href="/resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" 	href="/resources/css/font-awesome.min.css" />
+	<meta name="author" content="Team Salespoint" /> 
+	<meta name="description" content="super special awesome stuff" /> 
+	<meta name="generator" content="Microsoft FrontPage 6.0" /> 
+	<title>Catering Service</title>
+</head>
+<body>
+<header>
+		<div class="wrapper">
+        <div id="logo"></div> 
+            <div id="nav-left">
+                    <ul class="nav">
+                        <li class="selected"><a href="#"><i class="icon-th-large navIcon"></i> Online-Shop</a></li>
+                        <li><a href="#"><i class="icon-shopping-cart"></i> Warenkorb</a>
+                        <div id="warenkorb">
+                        <table>
+                        	<thead>
+                        		<tr>
+                    				<td>Name</td>
+                    				<td>Personen</td>
+                    				<td>Preis</td>
+                   					<td>Aktion</td>
+                				</tr>
+                        	</thead>
+                  			<tbody>
+                    			<tr>
+                    				<td>UTF-1 Package</td>
+                    				<td>27</td>
+                    				<td>120,27€</td>
+                    				<td><i class="icon-edit"></i>  <i class="icon-trash"></i></td>
+                             	</tr>
+                       </tbody>
+                        </table><br/>
+                        <button type="submit">Bestellen</button>
+                        </div>
+                        </li>
+                    </ul>
+			</div>
+			<div id="nav-right">
+			<ul class="nav">
+                <li><a href="#">
+                	<i class="icon-star navIcon"></i> Register
+                	</a><div id="register">
+                    	<form method="post" action="/register">
+                        	<label>Vorname:</label><br/>
+                            <input type="text"/><br/>
+                            <label>Nachname</label><br/>
+                            <input type="text"/><br/>
+                            <label>Benutzername:</label><br/>
+                            <input type="text"/><br/>
+                            <label>Kontonummer:</label><br/>
+                            <input type="text"/><br/>
+                            <label>BLZ:</label><br/>
+                            <input type="text"/><br/>
+                            <label>Passwort:</label><br/>
+                            <input type="password"/><br/><br/>
+                            <button type="submit">Registrieren</button>
+                        </form>
+                    </div>
+                </li>
+				<li><a href="bestellungen.html">
+                	<i class="icon-signin navIcon"></i> Login
+                    </a><div id="login">
+                    	<form method="post" action="/login">
+                            <label>Benutername:</label><br/>
+                            <input type="text" id="name" name="name"/><br/>
+                            <label>Passwort:</label><br/>
+                            <input type="password" id="password" name="password"/><br/><br/>
+                            <button type="submit" value="Login">Login</button>
+                        </form>
+                    </div>
+                </li>
+			</ul>
+			</div>
+		</div>
+	</header>  
+    <div class="wrapper">
+		<h1>Aktuelle Angebote</h1>
+		<div class="tableL">
+			Einträge pro Seite: <a class="active" href="#">10</a> | <a href="#">20</a> | <a href="#">50</a> | <a href="#">100</a>
+		</div>
+		<div class="tableR">
+			Seite: <a class="active" href="#">1</a> | <a href="#">2</a> | <a href="#">3</a>
+		</div>
+        <br/>
+        <br/>
+        <table>
+			<thead>
+            	<tr>
+                    <td>&nbsp;</td>
+                    <td>Name</td>
+                    <td>Umfang</td>
+                    <td>Personen</td>
+                    <td>Preis</td>
+                    <td>Aktion</td>
+                </tr>
+            </thead>
+            <tbody>
+            	<tr>
+               		<td><img src="/resources/img/1.png" /></td>
+                    <td>UTF-1 Package</td>
+                    <td>x Mitarbeiter<br/>x Liter Tee<br/>x Tabletts belegte Brötchen </td>
+                    <td><input type="range" min="0" max="50" value="25" step="1" onChange="showValue(this.value)" />
+					<span id="range">25</span></td>
+                    <td>xx,xx€</td>
+                    <td><i class="icon-shopping-cart"></i></td>
+                </tr>
+                <tr>
+               		<td><img src="/resources/img/2.png" /></td>
+                    <td id="utf2">UTF-2 Package</td>
+                    <td>x Mitarbeiter<br/>x Liter Cola<br/>x Liter Bier<br/>x Schnitzel </td>
+                    <td><input type="range" min="0" max="50" value="25" step="1" onChange="showValue2(this.value)" />
+					<span id="range2">25</span>
+                   </td>
+                    <td>xx,xx€</td>
+                    <td><i class="icon-shopping-cart" onClick="this.artikel"></i></td>
+                </tr>
+                </tbody>
+        </table>
+		<br/>  
+		<br/>
+		<br/>
+		<footer>
+			<hr/>
+			<div class="footer-left">
+				Copyright &copy; 2014 Dennis Körte<br/>
+				SWT-Praktikum <strong>Catering-Service</strong> Eine Java-Webanwendung
+			</div>
+			<div class="footer-right">
+				Lösung von:<br/>
+				Kevin, Dennis, Igor, Sangrim und Anne-Liesse
+			</div>
+            <br/>
+            <br/>
+		</footer>
+	</div>    
+</body>
+</html>

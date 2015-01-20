@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" type="text/css" 	href="/resources/css/style.css" />
+	<link rel="stylesheet" type="text/css" 	href="/resources/css/font-awesome.min.css" />
+	<meta name="author" content="Team Salespoint" /> 
+	<meta name="description" content="super special awesome stuff" /> 
+	<meta name="generator" content="Microsoft FrontPage 6.0" /> 
+	<title>Catering Service</title>
+</head>
+<body>
+<header>
+		<nav th:include="navigation :: navigation"></nav>
+	</header>  
+    <div class="wrapper">
+		<h1>Pakete</h1>
+        <br/>
+        <br/>
+        
+        <p style="color: red;">Beim Hinzufügen eines Artikels müssen alle Felder ausgefüllt werden!!! </p>
+        
+        <form method="get" action="/insertnewpackage" th:object="${produktInsertForm}">
+        
+        
+						<label for="name">Bezeichnung</label>
+						<input type="text" name="name" autofocus="autofocus"/>
+						<label for="price">Preis</label>
+						<input type="text" name="price" />
+						<label for="amount">Anzahl</label>
+						<input type="text" name="amount" />
+						<label for="category" class="input-label">Kategorie</label>
+						<select name = "category">
+							<option value="" style="display:none;" id="">bitte wählen</option>
+							<option value="speisen" id="speisen">Speisen</option>
+							<option value="getraenke" id="getraenke">Getränke</option>
+							<option value="leihwaren" id="leihwaren">Leihwaren</option>
+						</select>
+						<input type="submit" id="name" th:field="*{name}" value="Registrieren" />
+		</form>
+        
+        
+        
+        <table>
+        	<caption>Speisen</caption>
+        	<thead>
+        		<tr>
+        			<th >Bezeichnung</th>
+        			<th >Auf Lager</th>
+        			<th>Preis</th>
+        			<th>Aktion</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<tr th:each="article : ${catalogSpeisen}">
+        			<td th:text="${article.product.name}">aaa</td>
+        			<td th:text="${article.quantity}">9000</td>
+        			<td th:text="${article.product.price}"></td>
+        			<td>
+        				<form th:method="get" th:action="@{'/editpackage/' + ${article.identifier}}" th:attr="data-entry-id=${article.identifier}">
+        				<button >Edit</button>
+        				</form>
+        				<br/><br/>
+        				<form th:method="delete" th:action="@{'/removepackage/' + ${article.identifier}}" th:attr="data-entry-id=${article.identifier}">
+        				<button >Löschen</button>
+        				</form>
+        			</td>
+        		</tr>
+        	</tbody>
+        </table>
+        
+        <table>
+        	<caption>Getränke</caption>
+        	<thead>
+        		<tr>
+        			<th >Bezeichnung</th>
+        			<th >Auf Lager</th>
+        			<th>Preis</th>
+        			<th>Aktion</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<tr th:each="article : ${catalogGetraenke}">
+        			<td th:text="${article.product.name}">aaa</td>
+        			<td th:text="${article.quantity}">9000</td>
+        			<td th:text="${article.product.price}"></td>
+        			<td>
+        				<form th:method="get" th:action="@{'/editpackage/' + ${article.identifier}}" th:attr="data-entry-id=${article.identifier}">
+        				<button >Edit</button>
+        				</form>
+        				<br/><br/>
+        				<form th:method="delete" th:action="@{'/removepackage/' + ${article.identifier}}" th:attr="data-entry-id=${article.identifier}">
+        				<button >Löschen</button>
+        				</form>
+        			</td>
+        		</tr>
+        	</tbody>
+        </table>
+        
+        <table>
+        	<caption>Leihwaren</caption>
+        	<thead>
+        		<tr>
+        			<th >Bezeichnung</th>
+        			<th >Auf Lager</th>
+        			<th>Preis</th>
+        			<th>Aktion</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		<tr th:each="article : ${catalogLeihwaren}">
+        			<td th:text="${article.product.name}">aaa</td>
+        			<td th:text="${article.quantity}">9000</td>
+        			<td th:text="${article.product.price}"></td>
+        			<td>
+        				<form th:method="get" th:action="@{'/editpackage/' + ${article.identifier}}" th:attr="data-entry-id=${article.identifier}">
+        				<button >Edit</button>
+        				</form>
+        				<br/><br/>
+        				<form th:method="delete" th:action="@{'/removepackage/' + ${article.identifier}}" th:attr="data-entry-id=${article.identifier}">
+        				<button >Löschen</button>
+        				</form>
+        			</td>
+        		</tr>
+        	</tbody>
+        </table>
+              
+		<br/>  
+		<br/>
+		<br/>
+		<footer>
+			<hr/>
+			<div class="footer-left">
+				Copyright &copy; 2014 Dennis K&ouml;rte<br/>
+				SWT-Praktikum <strong>Catering-Service</strong> Eine Java-Webanwendung
+			</div>
+			<div class="footer-right">
+				L&ouml;sung von:<br/>
+				Kevin, Dennis, Igor, Sangrim und Anne-Liesse
+			</div>
+            <br/>
+            <br/>
+		</footer>
+	</div>    
+</body>
+</html>
